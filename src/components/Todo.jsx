@@ -23,6 +23,7 @@ const Todo = ({ todo, onRemoveTodo, onUpdateTodo }) => {
         setEditTable(false)
     }
 
+
     return (
         <div style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div key={id}>

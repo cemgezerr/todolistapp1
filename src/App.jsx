@@ -6,6 +6,8 @@ import TodoList from './components/TodoList'
 const App = () => {
 
     const [todos, setTodos] = useState([])
+    const [searchTerm, setSearchTerm] = useState('');
+
 
     const createTodo = (newTodo) => {
         setTodos([...todos, newTodo])
@@ -23,6 +25,10 @@ const App = () => {
         })
         setTodos([...updatedTodos]);
     }
+    const filteredTodos = todos.filter(todo => {
+        return todo.content.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
 
 
 
@@ -30,7 +36,14 @@ const App = () => {
         <div className='App'>
             <div>
                 <TodoCreate onCreateTodo={createTodo} />
-                <TodoList todos={todos} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />
+                <input
+                    type="text"
+                    placeholder="Todo ara..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className='search-input'
+                />
+                <TodoList todos={filteredTodos} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />
             </div>
         </div>
 
